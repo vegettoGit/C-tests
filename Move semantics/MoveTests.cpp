@@ -5,33 +5,33 @@
 
 MoveTest1::MoveTest1(const char* name)
 {
-	m_name.assign(name);
-	m_movableData = new char();
+    m_name.assign(name);
+    m_movableData = new char();
     
-	std::cout << m_name.c_str() << " constructor" << std::endl;
+    std::cout << m_name.c_str() << " constructor" << std::endl;
 }
 
 MoveTest1::~MoveTest1()
 {
-	delete m_movableData;
+    delete m_movableData;
     
-	std::cout << m_name.c_str() << " destructor" << std::endl;
+    std::cout << m_name.c_str() << " destructor" << std::endl;
 }
 
 MoveTest1::MoveTest1(const MoveTest1& other)
 {
-	m_name              = other.m_name;
-	m_movableData       = new char();
-	*m_movableData      = *(other.m_movableData);
+    m_name              = other.m_name;
+    m_movableData       = new char();
+    *m_movableData      = *(other.m_movableData);
     
-	std::cout << m_name.c_str() << " copy constructor" << std::endl;
+    std::cout << m_name.c_str() << " copy constructor" << std::endl;
 }
 
 MoveTest1::MoveTest1(MoveTest1&& other)
 {
     m_name              = other.m_name;
-	m_movableData       = other.m_movableData;
-	other.m_movableData = nullptr;
+    m_movableData       = other.m_movableData;
+    other.m_movableData = nullptr;
 
     std::cout << m_name.c_str() << " move constructor" << std::endl;
 }
@@ -48,11 +48,11 @@ MoveTest1& MoveTest1::operator = (MoveTest1&& other)
     if (this != &other)
     {
         m_name              = other.m_name;
-		m_movableData       = other.m_movableData;
-		other.m_movableData = nullptr;
+        m_movableData       = other.m_movableData;
+        other.m_movableData = nullptr;
     }
 
-	std::cout << m_name.c_str() << " move assignment" << std::endl;
+    std::cout << m_name.c_str() << " move assignment" << std::endl;
 
     return *this;
 }
