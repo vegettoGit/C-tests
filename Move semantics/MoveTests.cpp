@@ -1,6 +1,7 @@
 #include "MoveTests.h"
 
 #include <iostream>
+#include <vector>
 
 
 MoveTest1::MoveTest1(const char* name)
@@ -90,6 +91,12 @@ void main()
     // e destructor called here!
     
     // e.printName(); // Danger!
+
+	std::vector<MoveTest1> container;
+
+	container.push_back(MoveTest1("1st container element")); // Moves
+	container.push_back(MoveTest1("2nd container element")); // Move, and might move the 1st container element again
+	container.push_back(MoveTest1("3rd container element")); // Move, and might move the 1st and 2nd container elements again
 
     return;
 }
