@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+// Note: So far, the following comments apply to the VS2015 compiler
 
 MoveTest1::MoveTest1(const char* name)
 {
@@ -92,11 +93,11 @@ void main()
     
     // e.printName(); // Danger!
 
-	std::vector<MoveTest1> container;
+    std::vector<MoveTest1> container;
 
-	container.push_back(MoveTest1("1st container element")); // Moves
-	container.push_back(MoveTest1("2nd container element")); // Move, and might move the 1st container element again
-	container.push_back(MoveTest1("3rd container element")); // Move, and might move the 1st and 2nd container elements again
+    container.push_back(MoveTest1("1st container element")); // Moves
+    container.push_back(MoveTest1("2nd container element")); // Move, and might move the 1st container element again
+    container.push_back(MoveTest1("3rd container element")); // Move, and might move the 1st and 2nd container elements again
 
     return;
 }
