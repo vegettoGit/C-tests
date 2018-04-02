@@ -33,6 +33,10 @@ auto toTuple(T&& object) noexcept
         auto&&[member1, member2] = object;
         return std::make_tuple(member1, member2);
     }
+    else
+    {
+        return std::make_tuple();
+    }
 }
 
 int main()
@@ -50,3 +54,4 @@ int main()
 
     return 0;
 }
+
