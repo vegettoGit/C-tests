@@ -25,5 +25,5 @@ public:
 	void PrintTest();
 };
 
-#endif // ! CONSTEXPR_ARRAYS_H
+#endif // CONSTEXPR_ARRAYS_H
 
