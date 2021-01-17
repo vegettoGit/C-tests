@@ -2,7 +2,8 @@
 
 struct MoveTest1
 {
-	MoveTest1              (const char* name);
+   MoveTest1              ();
+   MoveTest1              (const char* name);
 	~MoveTest1             ();
 
 	MoveTest1              (const MoveTest1&);
@@ -18,5 +19,5 @@ struct MoveTest1
 private:
 
 	std::string m_name;
-	char*       m_movableData;
+	char*       m_singleChar;
 };

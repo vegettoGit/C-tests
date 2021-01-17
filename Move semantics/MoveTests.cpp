@@ -3,43 +3,57 @@
 #include <iostream>
 #include <vector>
 
-// Note: So far, the following comments apply to the VS2015 compiler
+// Note: All the below comments apply to observations being made when using the VS2019 compiler
+
+MoveTest1::MoveTest1()
+{
+   m_name.reserve(32);
+   m_singleChar = new char();
+
+   std::cout << "default constructor" << std::endl;
+}
 
 MoveTest1::MoveTest1(const char* name)
 {
     m_name.assign(name);
-    m_movableData = new char();
+    m_singleChar = new char();
     
     std::cout << m_name.c_str() << " constructor" << std::endl;
 }
 
 MoveTest1::~MoveTest1()
 {
-    delete m_movableData;
+    delete m_singleChar;
     
     std::cout << m_name.c_str() << " destructor" << std::endl;
 }
 
 MoveTest1::MoveTest1(const MoveTest1& other)
 {
-    m_name              = other.m_name;
-    m_movableData       = new char();
-    *m_movableData      = *(other.m_movableData);
+    m_name        = other.m_name;
+    m_singleChar  = new char();
+    *m_singleChar = *(other.m_singleChar);
     
     std::cout << m_name.c_str() << " copy constructor" << std::endl;
 }
 
 MoveTest1::MoveTest1(MoveTest1&& other)
 {
-    m_name              = other.m_name;
-    m_movableData       = other.m_movableData;
-    other.m_movableData = nullptr;
+    m_name             = std::move(other.m_name);
+    m_singleChar       = other.m_singleChar;
+    other.m_singleChar = nullptr;
 
     std::cout << m_name.c_str() << " move constructor" << std::endl;
 }
 
-MoveTest1 & MoveTest1::operator= (const MoveTest1&)
+MoveTest1& MoveTest1::operator = (const MoveTest1& other)
 {
+    if (this != &other)
+    {
+       m_name = other.m_name;
+       *m_singleChar = *(other.m_singleChar);
+    }
+
     std::cout << m_name.c_str() << " copy assignment" << std::endl;
 
     return *this;
@@ -49,9 +63,8 @@ MoveTest1& MoveTest1::operator = (MoveTest1&& other)
 {
     if (this != &other)
     {
-        m_name              = other.m_name;
-        m_movableData       = other.m_movableData;
-        other.m_movableData = nullptr;
+        m_name = std::move(other.m_name);
+        std::swap(m_singleChar, other.m_singleChar);
     }
 
     std::cout << m_name.c_str() << " move assignment" << std::endl;
@@ -93,11 +106,10 @@ void main()
     
     // e.printName(); // Danger!
 
-    std::vector<MoveTest1> container;
-
-    container.push_back(MoveTest1("1st container element")); // Moves
-    container.push_back(MoveTest1("2nd container element")); // Move, and might move the 1st container element again
-    container.push_back(MoveTest1("3rd container element")); // Move, and might move the 1st and 2nd container elements again
+    std::vector<MoveTest1> container(3);
+    container[0] = MoveTest1("1st container element"); // Creates temporary, move assigns to existing vector memory, destroys temporary
+    container[1] = MoveTest1("2nd container element"); // Creates temporary, move assigns to existing vector memory, destroys temporary
+    container[2] = MoveTest1("3rd container element"); // Creates temporary, move assigns to existing vector memory, destroys temporary
 
     return;
 }
