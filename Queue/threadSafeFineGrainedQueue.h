@@ -1,6 +1,7 @@
 #ifndef THREAD_SAFE_FINE_GRAINED_QUEUE_H
 #define THREAD_SAFE_FINE_GRAINED_QUEUE_H
 
+// Based on the example in the book "C++ Concurrency in Action: Practical Multithreading", Chapter 6, by Anthony Williams
 template<typename T>
 class threadSafeFineGrainedQueue
 {
