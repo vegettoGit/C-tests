@@ -38,4 +38,4 @@ public:
    static void destroyInstance();
 };
 
-#endif // SINGLETON
+#endif // SINGLETON_H
