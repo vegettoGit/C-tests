@@ -14,6 +14,7 @@ int main()
 
    lockFreeStack<int> stack2;
    stack2.push(7);
+   std::shared_ptr<int> oldHead = stack2.pop();
 
    return 0;
 }
