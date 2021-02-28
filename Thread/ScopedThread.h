@@ -11,18 +11,8 @@ class ScopedThread
 
 public:
 
-   explicit ScopedThread(std::thread resourceThread) 
-      :  m_resourceThread(std::move(resourceThread))
-   {
-      if (!resourceThread.joinable())
-      {
-         throw std::logic_error("No thread");
-      }
-   }
-   ~ScopedThread()
-   {
-      m_resourceThread.join();
-   }
+   explicit ScopedThread(std::thread resourceThread);
+   ~ScopedThread();
 
    ScopedThread(ScopedThread const&) = delete;
    ScopedThread& operator=(ScopedThread const&) = delete;
