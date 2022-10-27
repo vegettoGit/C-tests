@@ -10,13 +10,14 @@ std::size_t getWordCount(std::string_view words)
 		return 0;
 	}
 
-	return std::transform_reduce(	std::execution::par_unseq,
-									std::begin(words),
-									std::end(words) - 1,
-									std::begin(words) + 1,
-									std::size_t(!std::isspace(words.front()) ? 1 : 0),
-									std::plus(),
-									[](char left, char right) { return std::isspace(left) && !std::isspace(right); }
+	return std::transform_reduce(
+		std::execution::par_unseq,
+		std::begin(words),
+		std::end(words) - 1,
+		std::begin(words) + 1,
+		std::size_t(!std::isspace(words.front()) ? 1 : 0),
+		std::plus(),
+		[](char left, char right) { return std::isspace(left) && !std::isspace(right); }
 	);
 }
 
