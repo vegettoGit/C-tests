@@ -39,4 +39,6 @@ int main()
    shapes.emplace_back(Square{ 1.5 });
 
    drawAllShapes(shapes);
+   
+   return 0;
 }
